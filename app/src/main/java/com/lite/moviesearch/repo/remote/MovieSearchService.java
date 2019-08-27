@@ -1,5 +1,6 @@
 package com.lite.moviesearch.repo.remote;
 
+import com.lite.moviesearch.models.MovieDetail;
 import com.lite.moviesearch.models.MovieResponse;
 
 import retrofit2.Call;
@@ -12,4 +13,8 @@ public interface MovieSearchService {
     Call<MovieResponse> getSearchResults(@Query("s") String query,
                                          @Query("page") int page,
                                          @Query("apikey") String apikey);
+
+    @GET("/")
+    Call<MovieDetail> getDetail(@Query("i") String id,
+                                @Query("apikey") String apikey);
 }

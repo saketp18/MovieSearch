@@ -146,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
             public void onChanged(List<MovieSearch> movieSearches) {
                 mBookMarkList.setVisibility(View.VISIBLE);
                 mBookMarkAdapter.setData(movieSearches);
-                mBookMarkList.smoothScrollToPosition(mBookMarkAdapter.getItemCount());
             }
         });
     }
@@ -158,12 +157,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
         frameLayout.setVisibility(View.VISIBLE);
         DetailsFragment detailsFragment = new DetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("title", movieSearch.getTitle());
-        bundle.putString("year", movieSearch.getYear());
-        bundle.putString("poster", movieSearch.getPoster());
+        bundle.putString("id", movieSearch.getImdbID());
         detailsFragment.setArguments(bundle);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(frameLayout.getId(), detailsFragment);
+        fragmentTransaction.replace(frameLayout.getId(), detailsFragment);
         fragmentTransaction.addToBackStack("detailsfragment");
         fragmentTransaction.commit();
         isDetailShown = true;

@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.lite.moviesearch.models.MovieDetail;
 import com.lite.moviesearch.models.MovieResponse;
 import com.lite.moviesearch.models.MovieSearch;
 import com.lite.moviesearch.repo.bookmark.BookMarkRepository;
@@ -23,6 +24,7 @@ public class Repository {
 
     private static Repository repository = null;
     private MutableLiveData<MovieResponse> mResponse = new MutableLiveData<>();
+    private MutableLiveData<MovieDetail> mDetail = new MutableLiveData<>();
     private BookMarkRepository mBookMarkRepository;
     private final Executor executor = Executors.newSingleThreadExecutor();
 
@@ -37,8 +39,12 @@ public class Repository {
         return repository;
     }
 
-    public MutableLiveData<MovieResponse> getmResponse() {
+    public LiveData<MovieResponse> getmResponse() {
         return mResponse;
+    }
+
+    public LiveData<MovieDetail> getDetails(){
+        return mDetail;
     }
 
     public void loadData(String query, int page) {
@@ -54,6 +60,22 @@ public class Repository {
                 MovieResponse movieResponse = new MovieResponse();
                 movieResponse.setResponse("Fail");
                 mResponse.setValue(movieResponse);
+            }
+        });
+    }
+
+    public void loadDetails(String id){
+        Call<MovieDetail> call = RetrofitClient.getService().getDetail(id, AppConstants.API_KEY);
+        call.enqueue(new Callback<MovieDetail>() {
+            @Override
+            public void onResponse(Call<MovieDetail> call, Response<MovieDetail> response) {
+                if(response.isSuccessful())
+                    mDetail.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<MovieDetail> call, Throwable t) {
+
             }
         });
     }

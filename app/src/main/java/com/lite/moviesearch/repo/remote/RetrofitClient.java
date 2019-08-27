@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     private static Retrofit mRetrofit = null;
+    private static MovieSearchService service = null;
 
     private RetrofitClient() {
     }
@@ -29,8 +30,8 @@ public class RetrofitClient {
     }
 
     public static MovieSearchService getService() {
-
-        MovieSearchService service = getRetrofitInstance().create(MovieSearchService.class);
+        if(service == null)
+           service = getRetrofitInstance().create(MovieSearchService.class);
         return service;
     }
 }
