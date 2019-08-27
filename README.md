@@ -1,7 +1,7 @@
 # MovieSearch
 Search movies from omdb, and Bookmark your results
 
-Architectural design MVVM pattern is used. Working with recyclerview and glide as image loader. You can find working apk under demo/ap_debug.apk.
+Architectural design MVVM pattern is used. Working with recyclerview and glide as image loader. You can find working apk https://drive.google.com/open?id=1pwEvZehUWdCjwIkEySvR__r-UO47QO41
 
 Objective of this app is to build MVVM sample working with recyclerview and glide as image loader To attain below features following libraries are used: 
   - Retrofit2 
