@@ -25,3 +25,8 @@ Features:
 
 ### Demo
 ![Demo Gif](https://github.com/saketp18/MovieSearch/blob/master/demo/demo.gif)
+
+
+### Static analysis
+Codacy
+https://app.codacy.com/project/saketp18/MovieSearch/dashboard?bid=14021938
